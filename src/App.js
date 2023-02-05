@@ -83,52 +83,91 @@ class App extends Component {
 
   render() {
     return (
-        <div className="App">
-          <div className="container">
-            <div className="form">
-              <form onSubmit={this.handleSubmit} className="form">
-                <p> Bangladesh Income Tax Return Calculator for Job Holders (NBR:2022-23)</p>
-                <label>
-                  <select name="taxpayer" onChange={this.handleInputChange}>
-                    <option value="">Select Tax Payer Type</option>
-                    <option value="Men">Men</option>
-                    <option value="Women">Women</option>
-                    <option value="TG">Third Gender</option>
-                    <option value="dis">Disabled</option>
-                  </select>
-                </label>
-                <label>
-                  <input type="number" name="basicSalary" placeholder='Basic Salary Per Month (৳)' onChange={this.handleInputChange} />
-                </label>
-                <label>
-                  <input type="number" name="hra" placeholder='House Rent Allowance Per Month (৳)' onChange={this.handleInputChange} />
-                </label>
-                <label>
-                  <input type="number" name="med" placeholder='Medical Allowance Per Month (৳)' onChange={this.handleInputChange} />
-                </label>
-                <label>
-                  <input type="number" name="conveyance" placeholder='Conveyance Allowance Per Month (৳)' onChange={this.handleInputChange} />
-                </label>
-                <label>
-                  <input type="number" name="festivalFund" placeholder='Total Festival Bonus (৳)' onChange={this.handleInputChange} />
-                </label>
-                <label>
-                  <input type="number" name="performance" placeholder='Total Performance Bonus (৳)' onChange={this.handleInputChange} />
-                </label>
-                <label>
-                  <select name="carBenefit" onChange={this.handleInputChange}>
-                    <option value="">Select Car Benefit</option>
-                    <option value="true">Enabled</option>
-                    <option value="false">Disabled</option>
-                  </select>
-                </label>
-                <br />
-                <button type="submit" className="calculate-button">Calculate Tax</button>
-              </form>
-              <p className="tax-amount">Your Income tax is {this.state.taxAmount} ৳</p>
+      <div className="App">
+        <p> Bangladesh Income Tax Return Calculator for Job Holders (NBR:2022-23)</p>
+        <div className="container">
+          <div class="row">
+            <div class="col s12 m6">
+              <div className="form">
+                <form onSubmit={this.handleSubmit} className="form">
+                  <p>Income wise Tax</p>
+                  <label>
+                    <select name="taxpayer" onChange={this.handleInputChange} required>
+                      <option value="">Select Tax Payer Type</option>
+                      <option value="Men">Men</option>
+                      <option value="Women">Women</option>
+                      <option value="TG">Third Gender</option>
+                      <option value="dis">Disabled</option>
+                    </select>
+                  </label>
+                  <br />
+                  <label>
+                    <input type="number" name="basicSalary" placeholder='Basic Salary Per Month (৳)' required onChange={this.handleInputChange} />
+                  </label>
+                  <br />
+                  <label>
+                    <input type="number" name="hra" placeholder='House Rent Allowance Per Month (৳)' onChange={this.handleInputChange} />
+                  </label>
+                  <br />
+                  <label>
+                    <input type="number" name="med" placeholder='Medical Allowance Per Month (৳)' onChange={this.handleInputChange} />
+                  </label>
+                  <br />
+                  <label>
+                    <input type="number" name="conveyance" placeholder='Conveyance Allowance Per Month (৳)' onChange={this.handleInputChange} />
+                  </label>
+                  <br />
+                  <label>
+                    <input type="number" name="festivalFund" placeholder='Total Festival Bonus (৳)' onChange={this.handleInputChange} />
+                  </label>
+                  <br />
+                  <label>
+                    <input type="number" name="performance" placeholder='Total Performance Bonus (৳)' onChange={this.handleInputChange} />
+                  </label>
+                  <br />
+                  <label>
+                    <select name="carBenefit" onChange={this.handleInputChange}>
+                      <option value="">Select Car Benefit</option>
+                      <option value="true">Enabled</option>
+                      <option value="false">Disabled</option>
+                    </select>
+                  </label>
+                  <br />
+                  <button type="submit" className="calculate-button">Calculate Tax</button>
+                </form>
+                <p className="tax-amount">Your Income tax is {this.state.taxAmount} ৳</p>
+              </div>
+            </div>
+            <div class="col s12 m6">
+
+              <div className="form">
+                <form onSubmit={this.handleSubmit} className="form">
+                  <p>Investments</p>
+                  <label>
+                    <input type="number" name="dps" placeholder='Total Yearly DPS Amount(৳)' onChange={this.handleInputChange} />
+                  </label>
+                  <br />
+                  <label>
+                    <input type="number" name="futureFund" placeholder='Total Yearly Future Fund (৳)' onChange={this.handleInputChange} />
+                  </label>
+                  <br />
+                  <label>
+                    <input type="number" name="welfareFund" placeholder='Total Yearly Welfare Fund (৳)' onChange={this.handleInputChange} />
+                  </label>
+                  <br />
+                  <label>
+                    <input type="number" name="groupInsurance" placeholder='Total Yearly Group Insurance Fund(৳)' onChange={this.handleInputChange} />
+                  </label>
+                  <br />
+                  <button type="submit" className="calculate-investment-button">Calculate investment Discount</button>
+                </form>
+                <p className="tax-amount">Your Income tax is {this.state.invAmount} ৳</p>
+              </div>
+
             </div>
           </div>
         </div>
+      </div >
 
     );
   }

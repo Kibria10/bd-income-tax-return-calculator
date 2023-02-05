@@ -13,16 +13,22 @@ h1 {
   text-align: center;
 }
 
+.row {
+  display: flex;
+  justify-content: space-around;
+}
 
 form {
   max-width: 250px;
   margin: 10px auto;
   padding: 10px 20px;
-  border: 32px solid #FACB85;
-  background: #FACB85;
+  border: 32px solid #A8D1D1;
+  background: #A8D1D1;
   width: 300px;
   border-radius: 15px;
   box-shadow: 20px 20px 60px #97a1a1, -20px -20px 60px #ffffff;
+  float: left;
+  text-align: left;
 }
 
 body {
@@ -41,7 +47,7 @@ input {
   border: 4px double rgb(255, 199, 209);
   color: black;
   background-color: transparent;
-  box-shadow: inset 3px 3px 7px #e9bd7c, inset -3px -3px 7px #ffd98e;
+  box-shadow: inset 3px 3px 7px #c19fff, inset -3px -3px 7px #a575ff;
   border: var(--quadrary-color) solid 2px;
   padding: 10px;
 }
@@ -53,7 +59,7 @@ label {
 
 button {
   margin-top: 20px;
-  width: 120px;
+  width: 100%;
   height: 30px;
   border-radius: 5px;
   cursor: pointer;
@@ -63,9 +69,10 @@ button {
   border: var(--quadrary-color) solid 2px;
   color: black;
   font-family: 'Bitter', serif;
-
-}
-
+  display: flex;
+  justify-content: center;
+  }
+    
 button:hover {
   transition: 1s;
   background-color: #71f7f7;
@@ -86,7 +93,27 @@ select {
   border: 4px double rgb(255, 199, 209);
   color: black;
   background-color: transparent;
-  box-shadow: inset 3px 3px 7px #e9bd7c, inset -3px -3px 7px #ffd98e;
+  box-shadow: inset 3px 3px 7px #c19fff, inset -3px -3px 7px #a575ff;
   border: var(--quadrary-color) solid 2px;
   padding: 10px;
+}
+
+@media only screen and (max-width: 767px) {
+  .row {
+    flex-direction: column;
+  }
+  
+  .form {
+    margin-bottom: 20px;
+  }
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form {
+  padding: 10px;
+  text-align: left;
 }
