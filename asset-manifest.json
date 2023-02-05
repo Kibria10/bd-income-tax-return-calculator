@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bd-income-tax-return-calculator/static/css/main.db0180e4.css",
-    "main.js": "/bd-income-tax-return-calculator/static/js/main.830f9b7d.js",
+    "main.css": "/bd-income-tax-return-calculator/static/css/main.5bd04a06.css",
+    "main.js": "/bd-income-tax-return-calculator/static/js/main.2fc1c31d.js",
     "static/js/787.18f00280.chunk.js": "/bd-income-tax-return-calculator/static/js/787.18f00280.chunk.js",
     "index.html": "/bd-income-tax-return-calculator/index.html",
-    "main.db0180e4.css.map": "/bd-income-tax-return-calculator/static/css/main.db0180e4.css.map",
-    "main.830f9b7d.js.map": "/bd-income-tax-return-calculator/static/js/main.830f9b7d.js.map",
+    "main.5bd04a06.css.map": "/bd-income-tax-return-calculator/static/css/main.5bd04a06.css.map",
+    "main.2fc1c31d.js.map": "/bd-income-tax-return-calculator/static/js/main.2fc1c31d.js.map",
     "787.18f00280.chunk.js.map": "/bd-income-tax-return-calculator/static/js/787.18f00280.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.db0180e4.css",
-    "static/js/main.830f9b7d.js"
+    "static/css/main.5bd04a06.css",
+    "static/js/main.2fc1c31d.js"
   ]
 }
