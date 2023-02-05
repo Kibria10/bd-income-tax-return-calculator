@@ -19,6 +19,8 @@ class App extends Component {
       futureFund: 0,
       welfareFund: 0,
       groupInsurance: 0,
+      invAmount: 0,
+      finalDiscountAmount: 0,
     }
   }
 
@@ -48,12 +50,12 @@ class App extends Component {
     const highestInvestmentLimit = 10000000;
     //lowest number among total investment and 20% of total amount and highest investment limit
     let eligibleAmount = Math.min(totalInvestment, twentyPercentOfTotalAmount, highestInvestmentLimit);
-    console.log(eligibleAmount);
-    this.setState({ invAmount: eligibleAmount });
-    let finalDiscountAmount = (incomeTax - eligibleAmount*0.15).toFixed(2);
+    // console.log(eligibleAmount);
+    let finalDiscountAmount = (incomeTax - eligibleAmount * 0.15).toFixed(2);
     if (finalDiscountAmount < 0) {
       finalDiscountAmount = 5000;
     }
+    this.setState({ invAmount: (eligibleAmount*0.15).toFixed(2) });
     this.setState({ finalDiscountAmount: finalDiscountAmount });
   };
 
@@ -103,7 +105,7 @@ class App extends Component {
             <div class="col s12 m6">
               <div className="form">
                 <form onSubmit={this.handleSubmit} className="form">
-                  <p>Income wise Tax</p>
+                  <p>Incomes</p>
                   <label>
                     <select name="taxpayer" onChange={this.handleInputChange} required>
                       <option value="">Select Tax Payer Type</option>
@@ -147,8 +149,8 @@ class App extends Component {
                   </label>
                   <br />
                   <button type="submit" className="calculate-button">Calculate Tax</button>
+                  <p className="tax-amount">Your Income tax is {this.state.taxAmount} ৳</p>
                 </form>
-                <p className="tax-amount">Your Income tax is {this.state.taxAmount} ৳</p>
               </div>
             </div>
             <div class="col s12 m6">
@@ -172,14 +174,14 @@ class App extends Component {
                     <input type="number" name="groupInsurance" placeholder='Total Yearly Group Insurance Fund(৳)' onChange={this.handleInputChange} />
                   </label>
                   <br />
-                  <button type="submit" className="calculate-investment-button">Calculate investment Discount</button>
+                  <button type="submit" className="calculate-investment-button">Calculate Rebate</button>
+                  <p className="tax-amount">Your Tax Rebate Amount is  {this.state.invAmount} ৳</p>
                 </form>
-                <p className="tax-amount">Your Tax Rebate Amount is  {this.state.invAmount} ৳</p>
               </div>
             </div>
           </div>
         </div>
-        <p className="tax-amount">Your Final tax is {this.state.finalDiscountAmount} ৳</p>
+        <h4 className="tax-amount">Your Final Tax is {this.state.finalDiscountAmount} ৳</h4>
       </div >
 
     );
