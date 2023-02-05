@@ -5,16 +5,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      taxpayer: '',
-      basicSalary: '',
-      hra: '',
-      med: '',
-      conveyance: '',
-      festivalFund: '',
-      performance: '',
-      taxableIncome: '',
-      carBenefit: '',
-      taxAmount: 0
+      taxpayer: 0,
+      basicSalary: 0,
+      hra: 0,
+      med: 0,
+      conveyance: 0,
+      festivalFund: 0,
+      performance: 0,
+      taxableIncome: 0,
+      carBenefit: 0,
+      taxAmount: 0,
+      dps: 0,
+      futureFund: 0,
+      welfareFund: 0,
+      groupInsurance: 0,
     }
   }
 
@@ -26,30 +30,39 @@ class App extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { taxpayer, basicSalary, hra, med, conveyance, festivalFund, performance, carBenefit } = this.state;
+    const { taxpayer, basicSalary, hra, med, conveyance, festivalFund, performance, carBenefit, dps, futureFund, welfareFund, groupInsurance } = this.state;
     //check if any input is empty, if so set it to 0
-    const inputs = ['basicSalary', 'hra', 'med', 'conveyance', 'festivalFund', 'performance'];
+    const inputs = ['basicSalary', 'hra', 'med', 'conveyance', 'festivalFund', 'performance', 'dps', 'futureFund', 'welfareFund', 'groupInsurance'];
     inputs.forEach(input => {
       if (this.state[input] === '') {
         this.setState({ [input]: 0 });
       }
     });
-
     let totalAmountPerMonth = parseFloat(basicSalary) + parseFloat(hra) + parseFloat(med) + parseFloat(conveyance);
     let totalAmount = totalAmountPerMonth * 12 + parseFloat(festivalFund) + parseFloat(performance);
-    this.setState({ taxAmount: this.calculateTax(totalAmount, taxpayer, carBenefit, basicSalary) });
+    let incomeTax = this.calculateTax(totalAmount, taxpayer, carBenefit, basicSalary);
+    this.setState({ taxAmount: incomeTax });
+    //calculate rebate
+    let totalInvestment = parseFloat(dps) + parseFloat(futureFund) + parseFloat(welfareFund) + parseFloat(groupInsurance);
+    let twentyPercentOfTotalAmount = totalAmount * 0.2;
+    const highestInvestmentLimit = 10000000;
+    //lowest number among total investment and 20% of total amount and highest investment limit
+    let eligibleAmount = Math.min(totalInvestment, twentyPercentOfTotalAmount, highestInvestmentLimit);
+    console.log(eligibleAmount);
+    this.setState({ invAmount: eligibleAmount });
+    let finalDiscountAmount = (incomeTax - eligibleAmount*0.15).toFixed(2);
+    if (finalDiscountAmount < 0) {
+      finalDiscountAmount = 5000;
+    }
+    this.setState({ finalDiscountAmount: finalDiscountAmount });
   };
 
   calculateTax = (totalAmount, taxpayer, carBenefit, basicSalary) => {
-    console.log(totalAmount, taxpayer, carBenefit, basicSalary);
     //income tax calculation based on taxpayer and car benefit
     let carBenefitTax = 0;
     if (carBenefit === 'true') {
       carBenefitTax = basicSalary * 12 * 0.05; // 5% of yearly basic salary
     }
-
-    console.log(carBenefitTax);
-    console.log(totalAmount);
 
     if (taxpayer === 'Men') {
       if (totalAmount <= 300000) {
@@ -84,7 +97,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <p> Bangladesh Income Tax Return Calculator for Job Holders (NBR:2022-23)</p>
+        <p> Bangladesh Income Tax Calculator for Job Holders (NBR:2022-23)</p>
         <div className="container">
           <div class="row">
             <div class="col s12 m6">
@@ -161,12 +174,12 @@ class App extends Component {
                   <br />
                   <button type="submit" className="calculate-investment-button">Calculate investment Discount</button>
                 </form>
-                <p className="tax-amount">Your Income tax is {this.state.invAmount} ৳</p>
+                <p className="tax-amount">Your Tax Rebate Amount is  {this.state.invAmount} ৳</p>
               </div>
-
             </div>
           </div>
         </div>
+        <p className="tax-amount">Your Final tax is {this.state.finalDiscountAmount} ৳</p>
       </div >
 
     );
